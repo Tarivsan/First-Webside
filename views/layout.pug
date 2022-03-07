@@ -1,7 +1,22 @@
 doctype html
+//- aby uzyskac info jaka zakladka jest aktywna musimy uzyc mixin ktory dziala podobnie jak funkcja deklarujemy ze nasz item posiada tytul i url a nastepnie wskazujemy jak to bedzie wygladac i gdzie te elementy beda sie znajdowaly = uzywamy gdy chcemy przypisac jakas wartosc ktora nie jest stringiem
+mixin item(title, url)
+ li
+     a(href=url class=path == url ? 'active' : '')=title
+ //-  porownanie  url i tego co ma uzytkownik wlaczone ktory posiada uzytkownik, tworzymy klase jesli bedzie niepoprawnyto klasa bedzie pusta
 html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    //- robimy menu
   body
+    nav
+      ul
+       +item('Strona główna', '/')
+       +item('Newsy', '/news')
+       +item('Quiz', '/quiz')
+       +item('Admin', '/admin')
+    
+
+
     block content

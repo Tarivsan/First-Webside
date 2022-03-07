@@ -5,7 +5,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var newsRouter = require('./routes/news');
+var quizRouter = require('./routes/quiz');
+var adminRouter = require('./routes/admin');
 
 var app = express();
 
@@ -19,8 +21,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use((req, res, next) => {
+  res.locals.path= req.path;
+
+  next();
+});
+// najpierw to sie wykonuje daje nam info jaki jest request dopiero pozniej kod idzie dalej i kieruje ustawione na sztywno zakladki dodajemy patha do globalnej sciezki dzieki temu bedzie dostepny w naszych szablonach (path) to jego nazwa! nadana przeze mnie
+
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/news', newsRouter);
+app.use('/quiz', quizRouter);
+app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,8 +1,19 @@
 var createError = require('http-errors');
+var cookieSession = require('cookie-session');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const config = require('./config');
+const mongoose = require('mongoose');
+
+
+main().catch(err => console.log(`Nie udało się połączyć ${err}`));
+
+async function main() {
+  await mongoose.connect(config.db);
+}
+
 
 var indexRouter = require('./routes/index');
 var newsRouter = require('./routes/news');
@@ -20,6 +31,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+// mongodb+srv://tariv:<fUDgXtirCvptAkO0>@cluster0.fzlvx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+
+
+app.use(cookieSession({
+  name: 'session',
+  keys: config.keysSession,
+
+  // Cookie Options
+  maxAge: config.maxAge
+}))
+
 
 app.use((req, res, next) => {
   res.locals.path= req.path;

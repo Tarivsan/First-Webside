@@ -8,11 +8,8 @@ const config = require('./config');
 const mongoose = require('mongoose');
 
 
-main().catch(err => console.log(`Nie udało się połączyć ${err}`));
+mongoose.connect(config.db);
 
-async function main() {
-  await mongoose.connect(config.db);
-}
 
 
 var indexRouter = require('./routes/index');

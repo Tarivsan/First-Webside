@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  node:
+    container_name: "Damian-Quiz-Project"
+    build:
+      context: "."
+      dockerfile: "./Dockerfile"
+    working_dir: "/app"
+    ports:
+      - "3000:3000"
+    links:
+      - database
+    depends_on:
+      - database
+    networks:
+      - tariv-network
+  database:
+    container_name: quiz-database
+    image: "mongo"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=Tariv
+      - MONGO_INITDB_ROOT_PASSWORD=root
+      - MONGO_INITDB_DATABASE=Quizes
+    ports:
+      - "27017:27017"
+    networks:
+      - tariv-network
+
+networks:
+  tariv-network:
+    driver: bridge

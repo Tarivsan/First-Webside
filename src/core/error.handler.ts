@@ -12,5 +12,5 @@ export const ErrorHandler = (
   res: Response,
   _next: NextFunction
 ) => {
-  res.status(err.status).json({ Error: err.message });
+  res.status(err.status || 500).json({ Error: err.message });
 };

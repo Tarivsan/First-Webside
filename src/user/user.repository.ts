@@ -1,5 +1,5 @@
 import { UserModel } from "./user.model";
-import { hashPassword } from './_helpers/hashPasswprd'
+import { hashPassword } from './_helpers/hashPassword'
 
 export async function getUserById(id: string) {
   try {
@@ -15,9 +15,9 @@ export async function getUserById(id: string) {
   }
 }
 
-export async function getUserByEmail(email: string) {
+export async function findUser(mail: string) {
   try {
-    const result = await UserModel.findOne({ email });
+  const result = await UserModel.findOne({ email: mail });
 
     if (!result) {
       return null;

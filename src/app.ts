@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 
 import { createQuizRouter } from "./quiz/quiz.router";
-import { createUserRouter } from "./user/user.router"
+import { createUserRouter, createUserRouterByEmail } from "./user/user.router"
 import { createAuthRouter } from './auth/auth.router'
 import { ErrorHandler } from "./core/error.handler";
 
@@ -16,6 +16,7 @@ export const createExpressApp = () => {
   app.use("/quiz", createQuizRouter());
   app.use('/user', createUserRouter());
   app.use('/auth', createAuthRouter());
+  app.use('/user-email', createUserRouterByEmail());
   //   app.use('/news', createNewsRouter());
 
   app.use(ErrorHandler);

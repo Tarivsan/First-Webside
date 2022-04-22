@@ -44,3 +44,21 @@ export async function vote(id: string) {
     throw new StatusError(err.status, err.message);
   }
 }
+
+export async function delQuiz(id: string) {
+  try {
+    const found = await QuizModel.findById(id);
+
+    console.log(found);
+
+    if (!found) {
+      throw new StatusError(404, "Quiz with that id is not existing");
+    }
+
+    await QuizModel.deleteOne({ _id: id });
+
+    return `quiz "${found.title}" has been deleted`;
+  } catch (err) {
+    throw new StatusError(err.status, err.message);
+  }
+}

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { listQuizes, createQuiz, vote } from "./quiz.controller";
+import { listQuizes, createQuiz, vote, deleteQuiz,  } from "./quiz.controller";
 
 export function createQuizRouter() {
   const router = Router();
@@ -7,6 +7,7 @@ export function createQuizRouter() {
   router.patch("/:id", vote);
   router.post("/", createQuiz);
   router.get("/", listQuizes);
+  router.delete("/:id", deleteQuiz );
 
   return router;
 }

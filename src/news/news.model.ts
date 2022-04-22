@@ -5,11 +5,11 @@ export class NewsSchema extends Typegoose {
   @prop({ unique: true, required: true })
   title: string;
 
-  @prop()
-  description?: string;
+  @prop({ required: true, default: "" })
+  description: string;
 
   @prop()
   createdAt: Date;
 }
 
-export const QuizModel = getModel(new NewsSchema(), "News");
+export const NewsModel = getModel(new NewsSchema(), "News");

@@ -1,4 +1,4 @@
-import { getQuizes, createQuiz, vote } from "./quiz.repository";
+import { getQuizes, createQuiz, vote, delQuiz } from "./quiz.repository";
 
 export async function list() {
   const quizes = await getQuizes();
@@ -16,3 +16,11 @@ export async function incrementVotes(id: string) {
 
   return updatedQuiz;
 }
+
+export async function removeQuiz(id: string) {
+  const removedQuiz = await delQuiz(id);
+
+  return removedQuiz;
+}
+
+

@@ -12,6 +12,8 @@
   "dependencies": {
     "@hasezoey/typegoose": "^5.9.2",
     "@types/jsonwebtoken": "^8.5.8",
+    "@types/pug": "^2.0.6",
+    "@types/ramda": "^0.28.11",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.2",
     "cookie-parser": "~1.4.4",
@@ -24,7 +26,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.4",
     "morgan": "~1.9.1",
-    "pug": "2.0.0-beta11"
+    "pug": "2.0.0-beta11",
+    "ramda": "^0.28.0"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",

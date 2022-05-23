@@ -1,11 +1,14 @@
+import { authorize } from "../auth/_helpers/auth.middleware";
 import { Router } from "express";
 import { getUserById } from "./user.controller";
-import { getUserByEmail } from "./user.controller";
+import { getUserByEmail, removeUser, listOfUsers } from "./user.controller";
+
 
 export function createUserRouter() {
   const router = Router();
-
-  router.get("/:id", getUserById);
+  router.get("/list", authorize(), listOfUsers);
+  router.get("/:id", authorize(), getUserById);
+  router.delete("/:id", authorize(), removeUser);
 
 
   return router;
@@ -14,7 +17,7 @@ export function createUserRouter() {
 export function createUserRouterByEmail() {
   const router = Router();
 
-  router.get("/:mail", getUserByEmail);
+  router.get("/:mail", authorize(), getUserByEmail);
 
 
   return router;

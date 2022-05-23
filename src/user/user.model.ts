@@ -7,6 +7,9 @@ export class UserSchema extends Typegoose {
 
   @prop({ required: true })
   password: string;
+
+  @prop({ required: false })
+  resetPasswordCode: string;
 }
 
 export const UserModel = getModel(new UserSchema(), "Users");

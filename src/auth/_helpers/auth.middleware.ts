@@ -2,7 +2,7 @@ import { Request, Response, RequestHandler, NextFunction } from "express";
 import { clone } from "ramda";
 
 import { collectTokenFromHeader, validateToken } from "../auth.service";
-import { StatusError } from "core/error.handler";
+// import StatusError from "../core/error.handler";
 
 export function authorize(optional: boolean = false): RequestHandler {
   return async (req: Request, _res: Response, next: NextFunction) => {
@@ -18,7 +18,7 @@ export function authorize(optional: boolean = false): RequestHandler {
       if (optional) {
         return next();
       }
-      throw new StatusError(401, "UNAUTHORIZED");
+      console.log(err);
     }
   };
 }

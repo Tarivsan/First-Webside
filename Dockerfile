@@ -1,4 +1,4 @@
-FROM node:14-alpine
+FROM node:16-alpine
 
 RUN mkdir app
 
@@ -9,6 +9,7 @@ COPY ./.env /app
 COPY ./tsconfig.json /app
 COPY ./package.json /app
 COPY ./yarn.lock /app
+
 
 RUN yarn
 

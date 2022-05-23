@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "FORCE_COLOR=1 ts-node-dev ./src/index.ts",
+    "dev": "ts-node-dev ./src/index.ts",
     "start:prod": "node ./dist/index.js",
     "test": "mocha -r ts-node/register src/**/*.spec.ts",
     "build": "tsc -p .",
@@ -12,6 +12,7 @@
   "dependencies": {
     "@hasezoey/typegoose": "^5.9.2",
     "@types/jsonwebtoken": "^8.5.8",
+    "@types/nanoid": "^3.0.0",
     "@types/pug": "^2.0.6",
     "@types/ramda": "^0.28.11",
     "bcryptjs": "^2.4.3",

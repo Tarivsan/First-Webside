@@ -1,6 +1,10 @@
 import { Request, Response, NextFunction } from "express";
-import { registerUser, authenticate, sendEmailToResetPassword, resetPasswordValues} from "./auth.service"
-
+import {
+  registerUser,
+  authenticate,
+  sendEmailToResetPassword,
+  resetPasswordValues,
+} from "./auth.service";
 
 export async function register(
   req: Request,
@@ -16,11 +20,7 @@ export async function register(
   }
 }
 
-export async function login(
-  req: Request,
-  res: Response,
-  next: NextFunction
-) {
+export async function login(req: Request, res: Response, next: NextFunction) {
   try {
     const { email, password } = req.body;
 
@@ -35,21 +35,20 @@ export async function login(
 export const reqResetPassword = async (
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) => {
   try {
     const email = req.body.email;
 
     try {
       await sendEmailToResetPassword(email);
-      return res.status(200).json( { status: "Email has been send"});
+      return res.status(200).json({ status: "Email has been send" });
     } catch (err) {}
-    return res.status(200).send({ status: "Email has been send"});
+    return res.status(200).send({ status: "Email has been send" });
   } catch (err) {
     next(err);
   }
-}
-
+};
 
 export const resetPassword = async (
   req: Request,
@@ -57,7 +56,6 @@ export const resetPassword = async (
   next: NextFunction
 ) => {
   try {
-
     const { email, code, newPassword } = req.body;
 
     await resetPasswordValues(email, code, newPassword);

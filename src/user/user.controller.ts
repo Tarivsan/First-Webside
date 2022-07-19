@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { getOneById } from "./user.service";
 import { getOneByEmail, updateAcc, removeU, serviceOfList } from "./user.service";
 import { StatusError } from "../core/error.handler";
+import { construct } from "ramda";
 
 
 
@@ -105,3 +106,4 @@ export const update = async (
     return next(err);
   }
 };
+
